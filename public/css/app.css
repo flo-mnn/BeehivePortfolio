@@ -1,0 +1,106 @@
+@charset "UTF-8";
+.transitionHexa {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.transitionHexaB {
+  transform: rotateY(180deg);
+}
+
+:root {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+:root body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  background: url("../../../public/img/blowflower.jpg") no-repeat;
+  background-size: 100%;
+}
+:root body #beehive {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+:root body #beehive #svg {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  z-index: 2;
+}
+:root body #beehive #svgHover {
+  position: absolute !important;
+  z-index: 3;
+}
+:root body #beehive #svgHover #BeehiveHover {
+  opacity: 0;
+}
+:root body #beehive #svgBack {
+  position: absolute;
+  z-index: 1;
+}
+:root body #beehive #svgBack #BeehiveBack {
+  fill: #cf6868;
+}
+:root body #beehive #svgBack #Vector_12 {
+  fill: rgba(222, 184, 135, 0.603);
+}
+:root body #resume {
+  height: fit-content;
+  width: 100%;
+}
+:root body #resume .resume-item {
+  display: block;
+  margin: 20px auto;
+  width: 60%;
+}
+:root body #resume .resume-item .inner-resume-item {
+  border-radius: 5px;
+  height: fit-content;
+  width: 100%;
+  background-color: rgba(245, 245, 245, 0.6);
+  border-top: 3px solid #e64e46d8;
+  border-bottom: 3px solid #e64e46d8;
+}
+:root body #resume .resume-item .inner-resume-item .resume-item-inner {
+  display: flex;
+  margin: 20px 3%;
+  color: #806659;
+}
+:root body #resume .resume-item .inner-resume-item .resume-item-inner .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:root body #resume .resume-item .inner-resume-item .resume-item-inner .col {
+  margin: 0 2%;
+}
+:root body #resume .resume-item .inner-resume-item .resume-item-inner h4 {
+  font-size: 1.7rem;
+  color: #e64e46d8;
+}
+
+/* svg {
+
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 305px;
+    height: 426px;
+    /* transform: scale(1.2); */
+/* transform-origin: top; */
+/* serait bien de la refler la height avec js pour quelle soit égale à celle de la beehive sinon le scale pas terrible
+}; */
+/* reflechir à une idée de superposition de svg qui ferait le même effect qu'avec les cards, donc une global(pour le hover), une en dessous pour le face, et une encore pour le back... a regarder ! 
+avec du onclick js pour les liens? a checker  */
+/* autre piste : des couches de masques, voir css master PDF page 343 */
+
+/*# sourceMappingURL=app.css.map */
