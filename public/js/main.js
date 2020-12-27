@@ -1,13 +1,21 @@
-
-let hexa2 = document.getElementById('hexa2');
-let hexaH2 = document.getElementById('hexaH2');
-let hexaB2 = document.getElementById('hexaB2');
-
 let allHexa = document.getElementsByClassName('hexa');
 let allHexaH = document.getElementsByClassName('hexaH');
 let allHexaB = document.getElementsByClassName('hexaB');
 
-// Beehive Droping effect - start
+let allResumeItems = document.querySelectorAll('.resume-item');
+// console.log(allResumeItems);
+// function even/uneven:
+let uneven = (n) => {
+    let uneven;
+    if (n%2 === 1) {
+        uneven = true;
+    };
+    return uneven;
+};
+
+
+
+//// Beehive Droping effect - start
 // on landing page
 document.addEventListener('DOMContentLoaded',function(){
     // 1st TimeOut for delay on landing page
@@ -33,10 +41,10 @@ document.addEventListener('DOMContentLoaded',function(){
     
 });
 
-// Beehive Droping effect - end
+//// Beehive Droping effect - end
 
 
-// BEEHIVE rotate on click - start
+//// BEEHIVE rotate on click - start
 for (let i = 0; i < allHexa.length; i++) {
     allHexaH[i].addEventListener('click',function(){
 
@@ -57,16 +65,46 @@ for (let i = 0; i < allHexa.length; i++) {
     allHexaB[i].style.opacity = "0";
 };
 
-// BEEHIVE rotate on click - end
-
-// print resume section -start
-
-// Display none VS block
+//// BEEHIVE rotate on click - end
 
 
-// Delay Anchor Scroll
+//// PRINT resume section -start
+
+// -display none VS block
+for (let i = 0; i < allHexaH.length; i++) {
+    let link = allHexaH[i].parentElement;
+    link.addEventListener('click',function(){
+        allResumeItems[i].classList.toggle('visible');
+        
+        // check if visible, if yes, put it in an array?
+        let allDisplayed = [];
+        for (let i = 0; i < allResumeItems.length; i++) {
+          let name = allResumeItems[i].getAttribute('class');
+          if (name.includes('visible')) {
+              allDisplayed.push(allResumeItems[i]);
+          }; 
+        };
+
+        // check which one in allDisplayed is uneven
+        console.log(allDisplayed);
+        for (let i = 0; i < allDisplayed.length; i++) {
+            let nPlus1 = uneven(i);
+            let theOne = allDisplayed[i].querySelector('.resume-item-inner');
+            if (nPlus1 === true) {
+                theOne.style.flexDirection = "row-reverse";
+            } else {
+                theOne.style.flexDirection = "row";
+            };
+        };
+
+        allDisplayed = [];
+        // if()
+    });
+};
+
+// -delay Anchor Scroll
 function delayLink (URL) {
     setTimeout( function() { window.location = URL }, 1000 );
 };
 
-// print resume section -end
+//// PRINT resume section -end
