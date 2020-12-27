@@ -4,6 +4,7 @@ let allHexaB = document.getElementsByClassName('hexaB');
 
 let allResumeItems = document.querySelectorAll('.resume-item');
 // console.log(allResumeItems);
+
 // function even/uneven:
 let uneven = (n) => {
     let uneven;
@@ -45,9 +46,9 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 //// BEEHIVE rotate on click - start
-for (let i = 0; i < allHexa.length; i++) {
-    allHexaH[i].addEventListener('click',function(){
 
+// rotate Function:
+let rotateFunction = (i) => {
     allHexaB[i].style.transition = "transform 0.9s";
     allHexaB[i].style.transformOrigin = 'center';
     allHexaB[i].style.transformBox = 'fill-box';
@@ -55,7 +56,13 @@ for (let i = 0; i < allHexa.length; i++) {
     allHexa[i].style.transition = 'transform 0.9s, opacity 0.8s';
     allHexa[i].style.transformOrigin = 'center';
     allHexa[i].style.transformBox = 'fill-box';
-       
+};
+// rotate on hexa click
+for (let i = 0; i < allHexa.length; i++) {
+    allHexaH[i].addEventListener('click',function(){
+
+    rotateFunction(i);
+
     allHexa[i].classList.toggle('transitionHexa');
     allHexaB[i].classList.toggle('transitionHexaB');
     });
@@ -71,10 +78,10 @@ for (let i = 0; i < allHexa.length; i++) {
 //// PRINT resume section -start
 
 // -display none VS block
-for (let i = 0; i < allHexaH.length; i++) {
-    let link = allHexaH[i].parentElement;
-    link.addEventListener('click',function(){
-        allResumeItems[i].classList.toggle('visible');
+
+// display function 
+let displayFunction = (i) => {
+    // allResumeItems[i].classList.toggle('visible');
         
         // check if visible, if yes, put it in an array?
         let allDisplayed = [];
@@ -86,7 +93,6 @@ for (let i = 0; i < allHexaH.length; i++) {
         };
 
         // check which one in allDisplayed is uneven
-        console.log(allDisplayed);
         for (let i = 0; i < allDisplayed.length; i++) {
             let nPlus1 = uneven(i);
             let theOne = allDisplayed[i].querySelector('.resume-item-inner');
@@ -98,7 +104,16 @@ for (let i = 0; i < allHexaH.length; i++) {
         };
 
         allDisplayed = [];
-        // if()
+};
+
+// display resume-items on hexa Click
+for (let i = 0; i < allHexaH.length; i++) {
+    let link = allHexaH[i].parentElement;
+    link.addEventListener('click',function(){
+
+        allResumeItems[i].classList.toggle('visible');
+
+        displayFunction(i);  
     });
 };
 
@@ -108,3 +123,114 @@ function delayLink (URL) {
 };
 
 //// PRINT resume section -end
+
+
+// // TOGGLE Side Menu - start
+let toggleIcon = document.querySelector("#toggle");
+let dropdownMenu = document.querySelector('#dropdownMenu');
+let dropdownList = document.querySelector('#dropdownList');
+let dropdownListItems = dropdownList.querySelectorAll('a');
+
+toggleIcon.addEventListener('click',function(){
+    let toggle = dropdownList.classList.toggle('open');
+    if (toggle) {
+        // rotate the toggleIcon
+        toggleIcon.style.transition = "transform 0.4s";
+        toggleIcon.style.transform = "rotate(90deg)";
+        toggleIcon.style.transformOrigin = "center";
+        toggleIcon.style.transformBox = "fill-box";
+        // each icon appear
+        for(var i=0; i < dropdownListItems.length; i++){ 
+            (function(i) {
+               setTimeout(function(){
+                dropdownListItems[i].transition = "opacity 0.2s"
+                dropdownListItems[i].style.opacity = "1";
+                }, i * 300);
+            })(i);
+        };
+        // background opacity
+        dropdownMenu.style.transition = "background-color 1s"
+        dropdownMenu.style.backgroundColor = "#80665957";
+    } else {
+        // background opacity
+        dropdownMenu.style.transition = "background-color 0.3s"
+        dropdownMenu.style.backgroundColor = "transparent";
+        // rotate the toggleIcon
+        toggleIcon.style.transition = "transform 0.4s";
+        toggleIcon.style.transform = "unset";
+        toggleIcon.style.transformOrigin = "center";
+        toggleIcon.style.transformBox = "fill-box";
+        // each icon disappear
+        for(var i=0; i < dropdownListItems.length; i++){
+            dropdownListItems[i].style.opacity = "0";
+        };
+    };
+});
+
+// ListDisplay
+
+let listDisplay = document.querySelector('#listDisplay');
+let beehiveIcon = document.querySelector('#beehiveIcon');
+let listIcon = document.querySelector('#listIcon')
+
+// display or hide resume-items all at once on listDisplay click
+listDisplay.addEventListener('click',function(e){
+
+    let toggle = listDisplay.classList.toggle('on');
+
+    if (toggle) {
+        // display resume items
+        for (let i = 0; i < allResumeItems.length; i++) {
+            let className = allResumeItems[i].getAttribute('class');
+            let checkVisibility = className.includes('visible');
+            if (checkVisibility) {
+                displayFunction(i);
+                // allResumeItems.classList.remove('visible')
+            } else {
+                allResumeItems[i].classList.add('visible');
+                displayFunction(i); 
+            };
+        };
+
+        // scroll
+        window.location = "#introduction";
+
+        // rotate beehives
+        for (let i = 0; i < allHexaH.length; i++) {
+            allHexa[i].classList.remove('transitionHexa');
+            allHexaB[i].classList.remove('transitionHexaB');
+            rotateFunction(i);
+            allHexa[i].classList.add('transitionHexa');
+            allHexaB[i].classList.add('transitionHexaB');
+        };
+        // change icon
+        listIcon.style.display = "none";
+        beehiveIcon.style.display = "inline";
+
+    } else {
+        // back up
+        window.location = "#name";
+        // hide resume items
+        for (let i = 0; i < allResumeItems.length; i++) {
+            setTimeout(function(){
+                allResumeItems[i].classList.remove('visible');
+                }, 1000 );
+        }; 
+        // rotate hexas back to pattern 
+        for (let i = 0; i < allHexaH.length; i++) {
+            allHexa[i].classList.remove('transitionHexa');
+            allHexaB[i].classList.remove('transitionHexaB');
+            rotateFunction(i);
+        };
+        // change icon back
+        listIcon.style.display = "inline";
+        beehiveIcon.style.display = "none";
+    };
+
+    
+});
+
+
+// // TOGGLE Side Menu - end
+
+

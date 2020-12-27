@@ -19,6 +19,17 @@
     animation: fallin 0.5s forwards;
 };
 
+.open {
+    display: flex !important;
+};
+
+// // replace in js .closing by .dropping
+// .dropping {
+//     animation: fallin 1s forwards;
+// };
+// .closing {
+//     animation: closing 1s forwards;
+// };
 
 
 @keyframes fallin {
@@ -32,3 +43,16 @@
         transform : translateY(0);
     };
 };
+
+// @keyframes closing {
+//     from {
+//         opacity: 1;
+//         transform : translateY(0);
+        
+// };
+
+//     to {
+//         opacity: 0;
+//         transform: translateY(-100vh);
+//     };
+// };

@@ -10,6 +10,81 @@
         height: auto;
         background: url('../../../public/img/blowflower.jpg') no-repeat;
         background-size: cover;
+        a {
+            text-decoration: none;
+            &:hover {
+                filter: saturate(3);
+            };
+        };
+        #name {
+            position: absolute;
+            left: 2vw;
+            top: 3vh;
+            font-size: xx-large;
+            font-weight: bolder;
+            color: rgb(207, 104, 104);
+        };
+        #dropdownMenu {
+            position: fixed;
+            top: 0vh;
+            right: 0vw;
+            height: 100%;
+            width: 10%;
+            background-color:  transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            #toggle {
+                border: none;
+                background: none;
+                margin-top: 3vh ;
+                
+                color: rgb(207, 104, 104);
+                &:focus{
+                    outline: none;
+                };
+                &:hover {
+                    filter: saturate(3);
+                };
+                svg {
+                    #Hexagon {
+                        stroke: rgb(207, 104, 104);
+                    };   
+                };
+            };
+            #dropdownList {
+                display: none;
+                flex-direction: column;
+                height: 80vh;
+                font-size: 22px;
+                a {
+                    color: rgb(207, 104, 104);
+                    opacity: 0;
+                    &:hover {
+                        filter: saturate(3)
+                    };
+                };
+                .social{
+                    margin-top: 5vh;
+                    display: flex;
+                    flex-direction: column;
+                    a {
+                        margin: 15px 0;
+                    }
+                };
+                .display {
+                    margin-top: auto;
+                    display: flex;
+                    justify-content: center;
+                    #beehiveIcon {
+                        display: none;
+                        fill: rgb(207, 104, 104);
+                    };
+                };
+            };
+        };
+        
+        
         // section1
         #beehiveSection{
     
