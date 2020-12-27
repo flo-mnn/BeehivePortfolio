@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded',function(){
                         allHexa[i].style.opacity = "1";
                         allHexaB[i].classList.remove('falling-animation');
                         allHexaB[i].style.opacity = "1";
-                   }, 1000);
-                }, i * 120);
+                   }, 1000); // 1000 delay for the reset post animation
+                }, i * 120); //120 delay between each hexa falling
             })(i);
         };
-    }, 1200);
+    }, 1200); // 1200 delay on landing page
     
 });
 
@@ -50,14 +50,23 @@ for (let i = 0; i < allHexa.length; i++) {
        
     allHexa[i].classList.toggle('transitionHexa');
     allHexaB[i].classList.toggle('transitionHexaB');
-    }); 
+    });
 
     // for falling down effect, opacity to zero to begin
     allHexa[i].style.opacity = "0";
     allHexaB[i].style.opacity = "0";
 };
 
-
-
-
 // BEEHIVE rotate on click - end
+
+// print resume section -start
+
+// Display none VS block
+
+
+// Delay Anchor Scroll
+function delayLink (URL) {
+    setTimeout( function() { window.location = URL }, 1000 );
+};
+
+// print resume section -end

@@ -9,7 +9,7 @@
         width: 100%;
         height: auto;
         background: url('../../../public/img/blowflower.jpg') no-repeat;
-        background-size: 100%;
+        background-size: cover;
         // section1
         #beehiveSection{
     
@@ -27,9 +27,9 @@
                 height: fit-content;
                 position: absolute;
                 z-index: 2; 
-                #Beehive {
-                //    opacity: 0; 
-                }; 
+                // #Beehive {
+                // //    opacity: 0; 
+                // }; 
             };
             // transparent
             #svgHover {
@@ -92,38 +92,3 @@
         };
     };
 };
-
-
-
-
-
-
-
-
-
-
-
-/* svg {
-    
-    margin-top: 50px;
-    margin-left: 50px;
-    width: 305px;
-    height: 426px;
-    /* transform: scale(1.2); */
-    /* transform-origin: top; */
-    /* serait bien de la refler la height avec js pour quelle soit égale à celle de la beehive sinon le scale pas terrible
-}; */
-
-
-
-
-
-
-
-
-
-
-/* reflechir à une idée de superposition de svg qui ferait le même effect qu'avec les cards, donc une global(pour le hover), une en dessous pour le face, et une encore pour le back... a regarder ! 
-avec du onclick js pour les liens? a checker  */
-
-/* autre piste : des couches de masques, voir css master PDF page 343 */

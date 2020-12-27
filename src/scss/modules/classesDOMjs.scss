@@ -1,9 +1,11 @@
+// Beehive rotate on click
+
 .transitionHexa {
   
     transform: rotateY(180deg) !important;
 
     opacity: 0 !important;
-}
+};
 
 .transitionHexaB {
  
@@ -12,7 +14,7 @@
 };
 
 
-
+// falling animation
 .falling-animation {
     animation: fallin 0.5s forwards;
 };
