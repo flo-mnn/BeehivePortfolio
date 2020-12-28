@@ -6126,12 +6126,12 @@ readers do not read off random characters that represent icons */
   transform: rotateY(180deg) !important;
 }
 
-.falling-animation {
-  animation: fallin 0.5s forwards;
-}
-
 .open {
   display: flex !important;
+}
+
+.falling-animation {
+  animation: fallin 0.5s forwards;
 }
 
 @keyframes fallin {
@@ -6163,6 +6163,9 @@ readers do not read off random characters that represent icons */
 }
 :root body a:hover {
   filter: saturate(3);
+}
+:root body a:focus {
+  outline: none;
 }
 :root body #name {
   position: absolute;

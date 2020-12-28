@@ -140,7 +140,7 @@ toggleIcon.addEventListener('click',function(){
         toggleIcon.style.transformOrigin = "center";
         toggleIcon.style.transformBox = "fill-box";
         // each icon appear
-        for(var i=0; i < dropdownListItems.length; i++){ 
+        for(let i=0; i < dropdownListItems.length; i++){ 
             (function(i) {
                setTimeout(function(){
                 dropdownListItems[i].transition = "opacity 0.2s"
@@ -152,8 +152,13 @@ toggleIcon.addEventListener('click',function(){
         dropdownMenu.style.transition = "background-color 1s"
         dropdownMenu.style.backgroundColor = "#80665957";
     } else {
+        // delay the closure
+        dropdownList.classList.add("open");
+        setTimeout(() => {
+            dropdownList.classList.remove("open");
+        }, 600);
         // background opacity
-        dropdownMenu.style.transition = "background-color 0.3s"
+        dropdownMenu.style.transition = "background-color 0.8s"
         dropdownMenu.style.backgroundColor = "transparent";
         // rotate the toggleIcon
         toggleIcon.style.transition = "transform 0.4s";
@@ -161,8 +166,13 @@ toggleIcon.addEventListener('click',function(){
         toggleIcon.style.transformOrigin = "center";
         toggleIcon.style.transformBox = "fill-box";
         // each icon disappear
-        for(var i=0; i < dropdownListItems.length; i++){
-            dropdownListItems[i].style.opacity = "0";
+        for(let i= dropdownListItems.length -1; i >= 0; i--){ 
+            (function(i) {
+               setTimeout(function(){
+                dropdownListItems[(dropdownListItems.length -1) - i].transition = "opacity 0.2s"
+                dropdownListItems[(dropdownListItems.length -1) - i].style.opacity = "0";
+                }, i * 200);
+            })(i);
         };
     };
 });
@@ -173,7 +183,7 @@ let listDisplay = document.querySelector('#listDisplay');
 let beehiveIcon = document.querySelector('#beehiveIcon');
 let listIcon = document.querySelector('#listIcon')
 
-// display or hide resume-items all at once on listDisplay click
+//--- display or hide resume-items all at once on listDisplay click
 listDisplay.addEventListener('click',function(e){
 
     let toggle = listDisplay.classList.toggle('on');
@@ -229,7 +239,6 @@ listDisplay.addEventListener('click',function(e){
 
     
 });
-
 
 // // TOGGLE Side Menu - end
 
