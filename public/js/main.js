@@ -3,7 +3,6 @@ let allHexaH = document.getElementsByClassName('hexaH');
 let allHexaB = document.getElementsByClassName('hexaB');
 
 let allResumeItems = document.querySelectorAll('.resume-item');
-// console.log(allResumeItems);
 
 // function even/uneven:
 let uneven = (n) => {
@@ -17,10 +16,22 @@ let uneven = (n) => {
 
 
 //// Beehive Droping effect - start
+let BeehiveSvg = document.querySelector('#Beehive');
+let BeehiveBack = document.querySelector('#BeehiveBack');
+
+for (let i = 0; i < allHexaH.length; i++) {
+   // for falling down effect, opacity to zero to begin
+   allHexa[i].style.opacity = "0";
+   allHexaB[i].style.opacity = "0";   
+};
+
 // on landing page
 document.addEventListener('DOMContentLoaded',function(){
     // 1st TimeOut for delay on landing page
     setTimeout(() => {
+        BeehiveSvg.style.opacity = 1;
+        BeehiveBack.style.opacity = 1;
+
         for(var i=0; i < allHexa.length; i++){ 
             (function(i) {
                 // 2nd time out for each item (each i)
@@ -66,10 +77,6 @@ for (let i = 0; i < allHexa.length; i++) {
     allHexa[i].classList.toggle('transitionHexa');
     allHexaB[i].classList.toggle('transitionHexaB');
     });
-
-    // for falling down effect, opacity to zero to begin
-    allHexa[i].style.opacity = "0";
-    allHexaB[i].style.opacity = "0";
 };
 
 //// BEEHIVE rotate on click - end
@@ -122,6 +129,42 @@ function delayLink (URL) {
     setTimeout( function() { window.location = URL }, 1000 );
 };
 
+// GO BACK UP
+let backUpClicker = document.querySelector('#backUp');
+
+backUpClicker.addEventListener('click',function(){
+    window.location = "#name";
+});
+
+//--- Back up disappears on scroll up to the Beehive Page
+window.addEventListener('scroll', function(e) {
+    // 10 is a threshold, probably in pixels
+    //NB : scrollY replaces scrollTop
+   if (window.scrollY < 100){
+       backUpClicker.classList.remove('opacityOne');
+    } else {
+       backUpClicker.classList.add('opacityOne');
+   };
+});
+
+// close resume item btn
+let allCloseBtns = document.querySelectorAll('.close-resume-item');
+
+for (let i = 0; i < allCloseBtns.length; i++) {
+    allCloseBtns[i].addEventListener('click',function(){
+        // remove resume-item (maybe a nice opacity 1 to 0 with a set time out for display none (so displayFunction))
+        allResumeItems[i].classList.remove('visible');
+        displayFunction(i); 
+        // rotate back the hexa
+        allHexa[i].classList.remove('transitionHexa');
+        allHexaB[i].classList.remove('transitionHexaB');
+        rotateFunction(i);
+    });  
+};
+
+
+
+
 //// PRINT resume section -end
 
 
@@ -139,7 +182,7 @@ toggleIcon.addEventListener('click',function(){
         toggleIcon.style.transform = "rotate(90deg)";
         toggleIcon.style.transformOrigin = "center";
         toggleIcon.style.transformBox = "fill-box";
-        // each icon appear
+        // each icon appears
         for(let i=0; i < dropdownListItems.length; i++){ 
             (function(i) {
                setTimeout(function(){
@@ -193,9 +236,9 @@ listDisplay.addEventListener('click',function(e){
         for (let i = 0; i < allResumeItems.length; i++) {
             let className = allResumeItems[i].getAttribute('class');
             let checkVisibility = className.includes('visible');
+            // CHECK IF "visible" class already, if not, add it
             if (checkVisibility) {
                 displayFunction(i);
-                // allResumeItems.classList.remove('visible')
             } else {
                 allResumeItems[i].classList.add('visible');
                 displayFunction(i); 
@@ -210,12 +253,16 @@ listDisplay.addEventListener('click',function(e){
             allHexa[i].classList.remove('transitionHexa');
             allHexaB[i].classList.remove('transitionHexaB');
             rotateFunction(i);
-            allHexa[i].classList.add('transitionHexa');
-            allHexaB[i].classList.add('transitionHexaB');
+            (function(i) {
+                setTimeout(function(){
+                    allHexa[i].classList.add('transitionHexa');
+                    allHexaB[i].classList.add('transitionHexaB');
+                 }, i * 100);
+             })(i);
         };
         // change icon
-        listIcon.style.display = "none";
-        beehiveIcon.style.display = "inline";
+        listIcon.style.opacity = "0";
+        beehiveIcon.style.opacity = "1";
 
     } else {
         // back up
@@ -228,13 +275,17 @@ listDisplay.addEventListener('click',function(e){
         }; 
         // rotate hexas back to pattern 
         for (let i = 0; i < allHexaH.length; i++) {
-            allHexa[i].classList.remove('transitionHexa');
-            allHexaB[i].classList.remove('transitionHexaB');
+            (function(i) {
+                setTimeout(function(){
+                    allHexa[i].classList.remove('transitionHexa');
+                    allHexaB[i].classList.remove('transitionHexaB');
+                 }, i * 100);
+             })(i);
             rotateFunction(i);
         };
         // change icon back
-        listIcon.style.display = "inline";
-        beehiveIcon.style.display = "none";
+        listIcon.style.opacity = "1";
+        beehiveIcon.style.opacity = "0";
     };
 
     

@@ -6218,6 +6218,7 @@ readers do not read off random characters that represent icons */
   margin-top: 5vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 :root body #dropdownMenu #dropdownList .social a {
   margin: 15px 0;
@@ -6225,11 +6226,26 @@ readers do not read off random characters that represent icons */
 :root body #dropdownMenu #dropdownList .display {
   margin-top: auto;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+:root body #dropdownMenu #dropdownList .display #listDisplay {
+  position: relative;
+  left: center;
+  width: 100%;
+  height: 30px;
+  display: flex;
   justify-content: center;
 }
-:root body #dropdownMenu #dropdownList .display #beehiveIcon {
-  display: none;
+:root body #dropdownMenu #dropdownList .display #listDisplay #beehiveIcon {
+  position: absolute;
+  opacity: 0;
   fill: #cf6868;
+  transition: all 0.6s;
+}
+:root body #dropdownMenu #dropdownList .display #listDisplay #listIcon {
+  position: absolute;
+  transition: all 0.6s;
 }
 :root body #beehiveSection {
   width: 100%;
@@ -6247,6 +6263,9 @@ readers do not read off random characters that represent icons */
   position: absolute;
   z-index: 2;
 }
+:root body #beehiveSection #svg #Beehive {
+  opacity: 0;
+}
 :root body #beehiveSection #svgHover {
   position: absolute !important;
   z-index: 3;
@@ -6259,10 +6278,30 @@ readers do not read off random characters that represent icons */
   z-index: 1;
 }
 :root body #beehiveSection #svgBack #BeehiveBack {
+  opacity: 0;
   fill: #cf6868;
 }
 :root body #beehiveSection #svgBack #Vector_12 {
   fill: rgba(222, 184, 135, 0.603);
+}
+:root body .opacityOne {
+  opacity: 1 !important;
+}
+:root body #backUp {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  right: 0;
+  z-index: 5;
+  opacity: 0;
+  transition: all 0.6s;
+}
+:root body #backUp #BackUpIcon-v2 #ArrowUp {
+  fill: #cf6868;
+}
+:root body #backUp #BackUpIcon-v2 #UP {
+  fill: #cf6868;
 }
 :root body #resume {
   height: fit-content;
@@ -6275,6 +6314,22 @@ readers do not read off random characters that represent icons */
   display: none;
   margin: 20px auto;
   width: 60%;
+  position: relative;
+}
+:root body #resume .resume-item .close-resume-item {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  color: rgba(128, 128, 128, 0.2);
+}
+:root body #resume .resume-item .close-resume-item:focus {
+  outline: none;
+  color: gray;
+}
+:root body #resume .resume-item .close-resume-item:hover {
+  color: gray;
 }
 :root body #resume .resume-item .inner-resume-item {
   border-radius: 5px;
