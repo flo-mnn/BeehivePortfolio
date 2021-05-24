@@ -27,6 +27,8 @@ for (let i = 0; i < allHexaH.length; i++) {
 
 // on landing page
 document.addEventListener('DOMContentLoaded',function(){
+    let name = document.querySelector('#name');
+    name.style.opacity = "1";
     // 1st TimeOut for delay on landing page
     setTimeout(() => {
         BeehiveSvg.style.opacity = 1;
@@ -50,7 +52,9 @@ document.addEventListener('DOMContentLoaded',function(){
             })(i);
         };
     }, 1200); // 1200 delay on landing page
-    
+    setTimeout(() => {
+        allHexa[0].classList.add('cta');
+    }, 2400);
 });
 
 //// Beehive Droping effect - end
@@ -98,15 +102,23 @@ let displayFunction = (i) => {
               allDisplayed.push(allResumeItems[i]);
           }; 
         };
-
         // check which one in allDisplayed is uneven
         for (let i = 0; i < allDisplayed.length; i++) {
             let nPlus1 = uneven(i);
             let theOne = allDisplayed[i].querySelector('.resume-item-inner');
+            let content = theOne.querySelector('.content');
+            let contentId = content.getAttribute('id');
             if (nPlus1 === true) {
                 theOne.style.flexDirection = "row-reverse";
+                content.style.marginLeft = "auto";
+                content.style.textAlign = "right";
+                if (contentId==="col-hobbies" || contentId==="formation-col") {
+                    content.style.textAlign = "left";
+                }
             } else {
                 theOne.style.flexDirection = "row";
+                content.style.marginRight = "auto";
+                content.style.textAlign = "left";
             };
         };
 
@@ -117,10 +129,31 @@ let displayFunction = (i) => {
 for (let i = 0; i < allHexaH.length; i++) {
     let link = allHexaH[i].parentElement;
     link.addEventListener('click',function(){
-
+        
         allResumeItems[i].classList.toggle('visible');
-
         displayFunction(i);  
+
+        // automatically change listdisplay icon
+        // check if visible, if yes, put it in an array?
+        let allDisplayed = [];
+        for (let i = 0; i < allResumeItems.length; i++) {
+          let name = allResumeItems[i].getAttribute('class');
+          if (name.includes('visible')) {
+              allDisplayed.push(allResumeItems[i]);
+          }; 
+        };
+        let displayClass = listDisplay.getAttribute('class');
+        if (displayClass != null) {
+            if (displayClass.includes('on')) {
+                if (allDisplayed.length==0) {
+                    listDisplay.click()
+                };
+            } else {
+                if (allDisplayed.length==10) {
+                    listDisplay.click()
+                }
+            };
+        }
     });
 };
 
@@ -131,6 +164,8 @@ function delayLink (URL) {
 
 // GO BACK UP
 let backUpClicker = document.querySelector('#backUp');
+let footer = document.querySelector('footer');
+let resumeSection = document.querySelector('#resume');
 
 backUpClicker.addEventListener('click',function(){
     window.location = "#name";
@@ -142,8 +177,14 @@ window.addEventListener('scroll', function(e) {
     //NB : scrollY replaces scrollTop
    if (window.scrollY < 100){
        backUpClicker.classList.remove('opacityOne');
+    //    footer disappears part
+       footer.classList.remove('opacityOne');
+       resumeSection.style.paddingBottom= '0';
     } else {
-       backUpClicker.classList.add('opacityOne');
+        backUpClicker.classList.add('opacityOne');
+    //    footer appears part
+        footer.classList.add('opacityOne');
+        resumeSection.style.paddingBottom= '7vh';
    };
 });
 
@@ -159,6 +200,27 @@ for (let i = 0; i < allCloseBtns.length; i++) {
         allHexa[i].classList.remove('transitionHexa');
         allHexaB[i].classList.remove('transitionHexaB');
         rotateFunction(i);
+        // automatically change listdisplay icon
+        // check if visible, if yes, put it in an array?
+        let allDisplayed = [];
+        for (let i = 0; i < allResumeItems.length; i++) {
+          let name = allResumeItems[i].getAttribute('class');
+          if (name.includes('visible')) {
+              allDisplayed.push(allResumeItems[i]);
+          }; 
+        };
+        let displayClass = listDisplay.getAttribute('class');
+        if (displayClass != null) {
+            if (displayClass.includes('on')) {
+                if (allDisplayed.length==0) {
+                    listDisplay.click()
+                };
+            } else {
+                if (allDisplayed.length==10) {
+                    listDisplay.click()
+                }
+            };
+        }
     });  
 };
 
@@ -223,6 +285,7 @@ toggleIcon.addEventListener('click',function(){
 // ListDisplay
 
 let listDisplay = document.querySelector('#listDisplay');
+
 let beehiveIcon = document.querySelector('#beehiveIcon');
 let listIcon = document.querySelector('#listIcon')
 
@@ -232,6 +295,10 @@ listDisplay.addEventListener('click',function(e){
     let toggle = listDisplay.classList.toggle('on');
 
     if (toggle) {
+        ctaStop = true;
+        for (let i = 0; i < allHexa.length; i++) {
+            allHexa[i].classList.remove('cta');
+        };
         // display resume items
         for (let i = 0; i < allResumeItems.length; i++) {
             let className = allResumeItems[i].getAttribute('class');
@@ -272,7 +339,7 @@ listDisplay.addEventListener('click',function(e){
             setTimeout(function(){
                 allResumeItems[i].classList.remove('visible');
                 }, 1000 );
-        }; 
+        };      
         // rotate hexas back to pattern 
         for (let i = 0; i < allHexaH.length; i++) {
             (function(i) {
@@ -293,4 +360,31 @@ listDisplay.addEventListener('click',function(e){
 
 // // TOGGLE Side Menu - end
 
+// BEEHIVE CTA - start
+let ctaStop = false;
+for (let i = 0; i < allHexaH.length; i++) {
+    allHexaH[i].addEventListener('click',function(){
+      for (let i = 0; i < allHexa.length; i++) {
+          allHexa[i].classList.remove('cta');
+      };
+      if (ctaStop === false && i < allHexa.length -1) {
+        allHexa[i+1].classList.add('cta');  
+      };
+      if (i===9) {
+          ctaStop = true;
+      };
+    });
+};
 
+// BEEHIVE CTA - end
+
+// bEEHIVE HEXA HOVER start
+for (let i = 0; i < allHexaH.length; i++) {
+    allHexaH[i].addEventListener('mouseover',function(){
+        allHexa[i].classList.add('move')
+    });  
+    allHexaH[i].addEventListener('mouseout',function(){
+        allHexa[i].classList.remove('move')
+    });  
+};
+// bEEHIVE HEXA HOVER end

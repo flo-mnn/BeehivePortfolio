@@ -6117,46 +6117,92 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
-.transitionHexa {
-  transform: rotateY(180deg) !important;
-  opacity: 0 !important;
-}
-
-.transitionHexaB {
-  transform: rotateY(180deg) !important;
-}
-
-.open {
-  display: flex !important;
-}
-
-.falling-animation {
-  animation: fallin 0.5s forwards;
-}
-
-@keyframes fallin {
-  from {
-    opacity: 0;
-    transform: translateY(-100vh);
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  :root body #svg, :root body #svgHover, :root body #svgBack {
+    transform: scale(0.7);
+    transform-origin: center;
+    transform-box: fill-box;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  :root body #dropdownMenu {
+    z-index: 50;
+    top: 90vh !important;
+    right: 0vw;
+    height: 10vh !important;
+    width: 100% !important;
+    flex-direction: row !important;
+    align-items: center;
+  }
+  :root body #dropdownMenu #toggle {
+    margin-top: 0 !important;
+  }
+  :root body #dropdownMenu #dropdownList {
+    flex-direction: row !important;
+    height: 10vh !important;
+    width: 80vw !important;
+  }
+  :root body #dropdownMenu #dropdownList .social {
+    margin-top: 0vh !important;
+    flex-direction: row !important;
+    align-items: center;
+  }
+  :root body #dropdownMenu #dropdownList .social a {
+    margin: 15px !important;
+  }
+  :root body #dropdownMenu #dropdownList .display {
+    display: none !important;
+  }
+  :root body #resume {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+  }
+  :root body #resume .resume-item {
+    z-index: 20;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100% !important;
+    height: 100% !important;
+    align-items: center;
+    margin: 0px !important;
+    overflow: scroll;
+  }
+  :root body #resume .resume-item .resume-item-inner {
+    flex-direction: column !important;
+  }
+  :root body #resume .resume-item .inner-resume-item {
+    background-color: rgba(255, 255, 255, 0.726) !important;
   }
 }
 :root {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Nunito", sans-serif;
   scroll-behavior: smooth;
 }
 :root body {
+  position: relative;
   margin: 0;
   padding: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   background: url("../../../public/img/blowflower.jpg") no-repeat;
   background-size: cover;
+}
+:root body::-webkit-scrollbar {
+  width: 10px;
+  /* width of the entire scrollbar */
+}
+:root body::-webkit-scrollbar-track {
+  background: #806659;
+}
+:root body::-webkit-scrollbar-thumb {
+  background-color: #e64e46;
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  opacity: 0.5;
 }
 :root body a {
   text-decoration: none;
@@ -6168,15 +6214,19 @@ readers do not read off random characters that represent icons */
   outline: none;
 }
 :root body #name {
+  opacity: 0;
+  transition: opacity 4s, filter 0.4s;
   position: absolute;
   left: 2vw;
   top: 3vh;
-  font-size: xx-large;
+  font-size: 3.5rem;
   font-weight: bolder;
   color: #cf6868;
+  font-family: "Reenie Beanie";
 }
 :root body #dropdownMenu {
   position: fixed;
+  z-index: 50;
   top: 0vh;
   right: 0vw;
   height: 100%;
@@ -6206,6 +6256,9 @@ readers do not read off random characters that represent icons */
   flex-direction: column;
   height: 80vh;
   font-size: 22px;
+}
+:root body #dropdownMenu #dropdownList.open {
+  display: flex !important;
 }
 :root body #dropdownMenu #dropdownList a {
   color: #cf6868;
@@ -6257,6 +6310,19 @@ readers do not read off random characters that represent icons */
   padding: 0;
   margin: 0;
 }
+:root body #beehiveSection .falling-animation {
+  animation: fallin 0.5s forwards;
+}
+@keyframes fallin {
+  from {
+    opacity: 0;
+    transform: translateY(-100vh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 :root body #beehiveSection #svg {
   width: fit-content;
   height: fit-content;
@@ -6265,6 +6331,29 @@ readers do not read off random characters that represent icons */
 }
 :root body #beehiveSection #svg #Beehive {
   opacity: 0;
+  transition: 0.4s;
+}
+:root body #beehiveSection #svg #Beehive .transitionHexa {
+  transform: rotateY(180deg) !important;
+  opacity: 0 !important;
+}
+:root body #beehiveSection #svg #Beehive .move {
+  transform-origin: center;
+  transform-box: fill-box;
+  transform: rotateY(20deg);
+}
+:root body #beehiveSection #svg #Beehive .cta {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: slightgrow 0.5s infinite alternate;
+}
+@keyframes slightgrow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
 }
 :root body #beehiveSection #svgHover {
   position: absolute !important;
@@ -6279,13 +6368,9 @@ readers do not read off random characters that represent icons */
 }
 :root body #beehiveSection #svgBack #BeehiveBack {
   opacity: 0;
-  fill: #cf6868;
 }
-:root body #beehiveSection #svgBack #Vector_12 {
-  fill: rgba(222, 184, 135, 0.603);
-}
-:root body .opacityOne {
-  opacity: 1 !important;
+:root body #beehiveSection #svgBack #BeehiveBack .transitionHexaB {
+  transform: rotateY(180deg) !important;
 }
 :root body #backUp {
   position: fixed;
@@ -6293,9 +6378,12 @@ readers do not read off random characters that represent icons */
   justify-content: center;
   width: 10%;
   right: 0;
-  z-index: 5;
+  z-index: 60;
   opacity: 0;
   transition: all 0.6s;
+}
+:root body #backUp.opacityOne {
+  opacity: 1 !important;
 }
 :root body #backUp #BackUpIcon-v2 #ArrowUp {
   fill: #cf6868;
@@ -6307,16 +6395,20 @@ readers do not read off random characters that represent icons */
   height: fit-content;
   width: 100%;
 }
-:root body #resume .visible {
-  display: block !important;
-}
 :root body #resume .resume-item {
   display: none;
   margin: 20px auto;
   width: 60%;
   position: relative;
 }
-:root body #resume .resume-item .close-resume-item {
+:root body #resume .resume-item.visible {
+  display: flex !important;
+}
+:root body #resume .resume-item .all-item {
+  position: relative;
+  width: 100%;
+}
+:root body #resume .resume-item .all-item .close-resume-item {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -6324,11 +6416,11 @@ readers do not read off random characters that represent icons */
   border: none;
   color: rgba(128, 128, 128, 0.2);
 }
-:root body #resume .resume-item .close-resume-item:focus {
+:root body #resume .resume-item .all-item .close-resume-item:focus {
   outline: none;
   color: gray;
 }
-:root body #resume .resume-item .close-resume-item:hover {
+:root body #resume .resume-item .all-item .close-resume-item:hover {
   color: gray;
 }
 :root body #resume .resume-item .inner-resume-item {
@@ -6344,17 +6436,315 @@ readers do not read off random characters that represent icons */
   margin: 20px 3%;
   color: #806659;
 }
+:root body #resume .resume-item .inner-resume-item .resume-item-inner .content {
+  padding: 0 20px;
+}
 :root body #resume .resume-item .inner-resume-item .resume-item-inner .icon {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+:root body #resume .resume-item .inner-resume-item .resume-item-inner .icon svg:hover {
+  filter: saturate(2);
+}
 :root body #resume .resume-item .inner-resume-item .resume-item-inner .col {
   margin: 0 2%;
 }
+:root body #resume .resume-item .inner-resume-item .resume-item-inner .col:nth-child(2) {
+  margin-right: auto;
+}
 :root body #resume .resume-item .inner-resume-item .resume-item-inner h4 {
-  font-size: 1.7rem;
+  font-size: 2.2rem;
   color: #e64e46d8;
+  font-family: "Reenie Beanie";
+}
+:root body #resume .resume-item#digital ul {
+  display: flex;
+  list-style-type: none;
+  font-size: medium;
+  padding-inline-start: 0px;
+}
+:root body #resume .resume-item#digital ul li {
+  margin: 0 5px;
+  transition: 0.3s;
+}
+:root body #resume .resume-item#digital ul li:hover {
+  color: #e64e46;
+}
+:root body #resume .resume-item#work #work-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+:root body #resume .resume-item#work #work-col p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+:root body #resume .resume-item#work #work-col p:nth-child(4) {
+  font-weight: bold;
+  font-style: italic;
+}
+:root body #resume .resume-item#work #work-col a {
+  text-decoration: none;
+  color: #806659;
+  align-self: flex-end;
+}
+:root body #resume .resume-item#formation #formation-col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+:root body #resume .resume-item#formation #formation-col .formation-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: #e64e462a;
+  border-radius: 15px;
+  padding: 10px;
+  transition: 0.5s;
+}
+:root body #resume .resume-item#formation #formation-col .formation-item .when {
+  max-width: max-content;
+  align-self: flex-end;
+  font-weight: bold;
+  margin-top: 10px;
+}
+:root body #resume .resume-item#formation #formation-col .formation-item:hover {
+  transition: 2.5s;
+  background: linear-gradient(to right, transparent, #e64e46);
+}
+:root body #resume .resume-item#skills #skills-col {
+  width: 100%;
+}
+:root body #resume .resume-item#skills #skills-col .all-skills {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+}
+:root body #resume .resume-item#skills #skills-col .all-skills .skill-item {
+  width: 40%;
+  display: flex;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: large;
+  font-weight: bold;
+  transition: 0.4s;
+}
+:root body #resume .resume-item#skills #skills-col .all-skills .skill-item i {
+  width: 20%;
+  text-align: center;
+}
+:root body #resume .resume-item#skills #skills-col .all-skills .skill-item:hover {
+  color: white;
+  background-color: #e64e46;
+}
+:root body #resume .resume-item#languages .all-lgs {
+  display: flex;
+  justify-content: space-between;
+}
+:root body #resume .resume-item#languages .all-lgs .lg-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
+  padding: 50px;
+  margin: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: 0.3s;
+}
+:root body #resume .resume-item#languages .all-lgs .lg-item span {
+  position: absolute;
+  transition: 0.3s;
+}
+:root body #resume .resume-item#languages .all-lgs .lg-item span.lg {
+  opacity: 1;
+}
+:root body #resume .resume-item#languages .all-lgs .lg-item span.level {
+  opacity: 0;
+}
+:root body #resume .resume-item#languages .all-lgs .lg-item:hover {
+  color: white;
+  background-color: #e64e46;
+}
+:root body #resume .resume-item#languages .all-lgs .lg-item:hover .lg {
+  opacity: 0;
+}
+:root body #resume .resume-item#languages .all-lgs .lg-item:hover .level {
+  opacity: 1;
+}
+:root body #resume .resume-item#hobbies #col-hobbies {
+  width: 60%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+:root body #resume .resume-item#hobbies #col-hobbies h4 {
+  margin-bottom: 50px;
+}
+:root body #resume .resume-item#hobbies #col-hobbies ul {
+  margin-bottom: 30px;
+  list-style-type: none;
+  padding-inline-start: 0;
+  font-weight: bold;
+}
+:root body #resume .resume-item#hobbies #col-hobbies ul li {
+  margin-bottom: 5px;
+}
+:root body #resume .resume-item#hobbies #col-hobbies .wheel {
+  align-self: flex-end;
+  margin-top: 50px;
+  opacity: 0.2;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: 0.4s;
+}
+@keyframes wheelTurns {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+:root body #resume .resume-item#hobbies #col-hobbies .wheel i {
+  position: absolute;
+  transform-origin: center;
+}
+:root body #resume .resume-item#hobbies #col-hobbies .wheel i:nth-child(1) {
+  transform: translateX(-50px) translateY(-75px);
+}
+:root body #resume .resume-item#hobbies #col-hobbies .wheel i:nth-child(2) {
+  transform: translateX(75px) translateY(-75px);
+}
+:root body #resume .resume-item#hobbies #col-hobbies .wheel i:nth-child(3) {
+  transform: translateX(100px) translateY(50px);
+}
+:root body #resume .resume-item#hobbies #col-hobbies .wheel i:nth-child(4) {
+  transform: translateX(0px) translateY(100px);
+}
+:root body #resume .resume-item#hobbies #col-hobbies .wheel i:nth-child(5) {
+  transform: translateX(-100px) translateY(25px);
+}
+:root body #resume .resume-item#hobbies:hover .wheel {
+  opacity: 1 !important;
+  animation: wheelTurns 10s infinite linear forwards;
+  color: white;
+  background-color: #e64e4671 !important;
+}
+:root body #resume .resume-item#contact {
+  margin-bottom: 0px;
+}
+:root body #resume .resume-item#contact span {
+  color: white;
+}
+:root body #resume .resume-item#portfolio a {
+  color: #e64e46;
+  margin-left: 15px;
+}
+:root body #resume .resume-item#portfolio ul {
+  list-style-type: "⬣";
+}
+:root body #resume .resume-item#contact span {
+  font-weight: bold;
+}
+:root body #resume .resume-item#contact span i {
+  color: #e64e46;
+  margin: 0 20px;
+}
+:root body #resume .resume-item#contact a {
+  color: #e64e4696;
+}
+:root body #resume .resume-item#contact .or {
+  font-style: italic;
+  text-align: center;
+}
+:root body #resume .resume-item#contact form {
+  text-align: center;
+}
+:root body #resume .resume-item#contact form input, :root body #resume .resume-item#contact form textarea {
+  width: 90%;
+  margin: 10px 0;
+  padding: 15px;
+  border: none;
+  background-color: transparent;
+  border-bottom: solid 3px #e64e46;
+  font-family: "Nunito", sans-serif;
+  color: #806659;
+}
+:root body #resume .resume-item#contact form input:focus, :root body #resume .resume-item#contact form textarea:focus {
+  outline: none;
+  background-color: #e64e465e;
+  color: white;
+}
+:root body #resume .resume-item#contact form input:focus::placeholder, :root body #resume .resume-item#contact form textarea:focus::placeholder {
+  color: white;
+}
+:root body #resume .resume-item#contact form textarea {
+  resize: none;
+}
+:root body #resume .resume-item#contact form textarea::-webkit-scrollbar {
+  width: 10px;
+  /* width of the entire scrollbar */
+}
+:root body #resume .resume-item#contact form textarea::-webkit-scrollbar-track {
+  background: #806659;
+}
+:root body #resume .resume-item#contact form textarea::-webkit-scrollbar-thumb {
+  background-color: #e64e46;
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  opacity: 0.5;
+}
+:root body #resume .resume-item#contact form button {
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  background-color: #e64e46;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+:root body #resume .resume-item#contact form button:focus {
+  outline: none;
+}
+:root body #resume .resume-item#contact form button:hover {
+  opacity: 1;
+}
+:root body footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5vh;
+  width: 100%;
+  background-color: #80665977;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  transition: 0.5s;
+}
+:root body footer:hover {
+  opacity: 1;
+}
+:root body footer.opacityOne {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=app.css.map */
