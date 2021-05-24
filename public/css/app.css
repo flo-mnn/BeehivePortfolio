@@ -6172,8 +6172,27 @@ readers do not read off random characters that represent icons */
   :root body #resume .resume-item .resume-item-inner {
     flex-direction: column !important;
   }
+  :root body #resume .resume-item .resume-item-inner .content {
+    padding: 0px !important;
+  }
   :root body #resume .resume-item .inner-resume-item {
     background-color: rgba(255, 255, 255, 0.726) !important;
+  }
+  :root body #resume #formation .content {
+    padding: 0px !important;
+  }
+  :root body #resume #formation .content .formation-item {
+    padding: 0px !important;
+  }
+  :root body #resume #contact {
+    align-self: flex-start;
+    padding-top: 200px !important;
+  }
+  :root body #resume #contact .all-item {
+    padding-top: 200px !important;
+  }
+  :root body #resume #contact .all-item .close-resume-item {
+    top: 210px !important;
   }
 }
 :root {
@@ -6460,6 +6479,7 @@ readers do not read off random characters that represent icons */
 }
 :root body #resume .resume-item#digital ul {
   display: flex;
+  flex-wrap: wrap;
   list-style-type: none;
   font-size: medium;
   padding-inline-start: 0px;
@@ -6544,6 +6564,7 @@ readers do not read off random characters that represent icons */
 }
 :root body #resume .resume-item#languages .all-lgs {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 :root body #resume .resume-item#languages .all-lgs .lg-item {

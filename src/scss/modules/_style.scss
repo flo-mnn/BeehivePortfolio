@@ -313,6 +313,7 @@
                 &#digital{
                     ul {
                         display: flex;
+                        flex-wrap: wrap;
                         list-style-type: none;
                         font-size: medium;
                         padding-inline-start: 0px;
@@ -408,6 +409,7 @@
                 &#languages{
                     .all-lgs{
                         display: flex;
+                        flex-wrap: wrap;
                         justify-content: space-between;
                         .lg-item{
                             position: relative;

@@ -52,11 +52,32 @@
                     overflow: scroll;
                     .resume-item-inner{
                         flex-direction: column !important;
+                        .content {
+                            padding: 0px !important;
+                        };
                     };
                     .inner-resume-item{
                         background-color: rgba(255, 255, 255, 0.726) !important;
                     };
                 };
+                #formation{
+                    .content {
+                        padding: 0px !important;
+                        .formation-item{
+                            padding: 0px !important;
+                        };
+                    };
+                };
+                #contact{
+                    align-self: flex-start;
+                    padding-top: 200px !important;
+                    .all-item{
+                        padding-top: 200px !important;
+                        .close-resume-item{
+                            top: 210px !important;
+                        };
+                    };
+                }
             }
         }
     }
