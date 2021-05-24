@@ -6184,16 +6184,6 @@ readers do not read off random characters that represent icons */
   :root body #resume #formation .content .formation-item {
     padding: 0px !important;
   }
-  :root body #resume #contact {
-    align-self: flex-start;
-    padding-top: 200px !important;
-  }
-  :root body #resume #contact .all-item {
-    padding-top: 200px !important;
-  }
-  :root body #resume #contact .all-item .close-resume-item {
-    top: 210px !important;
-  }
 }
 :root {
   margin: 0;

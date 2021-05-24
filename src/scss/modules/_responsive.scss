@@ -68,16 +68,17 @@
                         };
                     };
                 };
-                #contact{
-                    align-self: flex-start;
-                    padding-top: 200px !important;
-                    .all-item{
-                        padding-top: 200px !important;
-                        .close-resume-item{
-                            top: 210px !important;
-                        };
-                    };
-                }
+                //as form not working on githubpages, no need for that
+                // #contact{
+                //     align-self: flex-start;
+                //     padding-top: 200px !important;
+                //     .all-item{
+                //         padding-top: 200px !important;
+                //         .close-resume-item{
+                //             top: 210px !important;
+                //         };
+                //     };
+                // }
             }
         }
     }
